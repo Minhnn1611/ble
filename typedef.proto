@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+
+message Led_t{
+    string name = 16;
+    uint64 mac = 17;
+    uint32 ep = 18;
+    bool status = 19;
+}
+
+message Sync_t {
+    bool add = 16;
+    bool remove = 17;
+    bool sync = 18;
+}
+
+message Sw_t{
+    string name = 16;
+    uint32 ep = 17;
+    uint64 mac = 18;
+    bool status = 19;
+}
+
+message Ota_t {
+    bool check_ota = 16;
+    bool status = 17;
+    bool ack = 18;
+}
+
+message KeepAlive_t {
+    User_t sender = 1;
+}
+
+
+enum User_t {
+    App = 0;
+    Server = 1;
+    Hub = 2;
+    Zigbee = 3;
+    Ble = 4;
+    Ai = 5;
+    Wifi = 6;
+    Screen = 7;
+    Ota = 8;
+}
+
+message Timer_t {
+    uint32 day =15;
+    uint32 month = 16;
+    uint32 hour = 17;
+    uint32 minute = 18;
+}
+
+message Buffer {
+    string mac_hub = 1;
+    User_t sender = 2; // người gửi
+    User_t receiver = 3; // người nhận
+    User_t cotroller = 4; // người thực hiện
+    Sync_t sync = 5;
+    Ota_t ota = 16;
+    Vpn_t vpn = 17;
+    repeated Led_t led = 18;
+    repeated Sw_t  sw = 19;
+    Timer_t time = 20;
+}
+
+message Vpn_t {
+    bool status = 1;
+    string mac = 2;
+}
+
+
+message Vendor_t {
+    string mac_ven = 1;
+    string data = 2;
+    bool status = 3;
+}
